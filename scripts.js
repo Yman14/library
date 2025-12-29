@@ -25,9 +25,36 @@ console.table(myLibrary);
 function addBookButtonHandler() {
     const addBookBtn = document.getElementById("add-book-btn");
     const dialog = document.getElementById("add-book-dialog");
+    const confirmBtn = document.getElementById("confirm-btn");
+    const outputBox = document.querySelector("output");
+    outputBox.value = "outputBox.";
     addBookBtn.addEventListener("click", () => {
         dialog.showModal();
     });
+
+    dialog.addEventListener("close", (e) => {
+        outputBox.value =
+            dialog.returnValue === "default"
+                ? "No return value."
+                : `ReturnValue: ${dialog.returnValue}.`;
+    });
+
+    confirmBtn.addEventListener("click", (event) => {
+        event.preventDefault(); //Prevent the default form submission that refreshes the page
+
+        const form = document.getElementById("add-book-form");
+        const formData = new FormData(form);
+        const title = formData.get("title");
+        const author = formData.get("author");
+        const year = formData.get("year");
+        const pages = formData.get("pages");
+        const status = formData.get("status");
+
+        addBookToLibrary(title, author, year, pages, status);
+        displayBooks();
+        dialog.close("Book Added");
+        });
+
 
 }
 addBookButtonHandler();
