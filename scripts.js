@@ -21,3 +21,17 @@ addBookToLibrary("1984", "George Orwell", 1949);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 1960);
 
 console.table(myLibrary);
+
+
+function displayBooks() {
+    const bookList = document.getElementById("book-list");
+    bookList.innerHTML = "";
+
+    myLibrary.forEach(book => {
+        const bookItem = document.createElement("div");
+        bookItem.className = "book-item";
+        bookItem.textContent = `${book.title} by ${book.author} (${book.year}) - UUID: ${book.uuid}`;
+        bookList.appendChild(bookItem);
+    });
+}
+displayBooks();
