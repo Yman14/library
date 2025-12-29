@@ -17,9 +17,9 @@ function addBookToLibrary(title, author, year, pages, status) {
 }
 // Sample books
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 1925, 180,"read");
-addBookToLibrary("1984", "George Orwell", 1949);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 1960);
-
+addBookToLibrary("Nineteen Eighty-Four", "George Orwell", 1949, 328, "reading");
+addBookToLibrary("hello world", "lee", 2026, 1, "reading");
 console.table(myLibrary);
 
 function addBookButtonHandler() {
