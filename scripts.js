@@ -22,6 +22,16 @@ addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 1960);
 
 console.table(myLibrary);
 
+function addBookButtonHandler() {
+    const addBookBtn = document.getElementById("add-book-btn");
+    const dialog = document.getElementById("add-book-dialog");
+    addBookBtn.addEventListener("click", () => {
+        dialog.showModal();
+    });
+
+}
+addBookButtonHandler();
+
 
 function displayBooks() {
     const bookList = document.getElementById("book-list");
