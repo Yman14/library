@@ -38,6 +38,11 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    text-align: center;
+}
+
+.year-cover {
+    margin-top: -10px;
 }
 
 .btns-cover {

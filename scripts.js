@@ -77,7 +77,7 @@ function displayBooks() {
         bookItem.className = "book-item";
         //bookItem.textContent = `${book.title} by ${book.author} (${book.year}) - UUID: ${book.uuid}`;
         bookList.appendChild(bookItem);
-        const titleCover = document.createElement("h3");
+        const titleCover = document.createElement("h2");
         const yearCover = document.createElement("h5");
         const authorCover = document.createElement("h4");
         const btnsCover = document.createElement("div");
@@ -88,7 +88,7 @@ function displayBooks() {
         btnsCover.classList.add("btns-cover");
         pagesCover.classList.add("pages-cover");        
         titleCover.textContent = book.title;
-        yearCover.textContent = book.year;
+        yearCover.textContent = `(${book.year})`;
         authorCover.textContent = book.author;
         pagesCover.textContent = book.pages;
         bookItem.append(titleCover, yearCover, authorCover, btnsCover, pagesCover);
