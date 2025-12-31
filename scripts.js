@@ -38,10 +38,13 @@ function addBookButtonHandler() {
     const cancelBtn = document.getElementById("cancel-btn");
     const outputBox = document.querySelector("output");
     outputBox.value = "outputBox.";
+
+    //show the form when the button is clicked
     addBookBtn.addEventListener("click", () => {
         dialog.showModal();
     });
 
+    //for testing purpose to know what returns when the form is closed
     dialog.addEventListener("close", (e) => {
         outputBox.value =
             dialog.returnValue === "default"
@@ -49,6 +52,7 @@ function addBookButtonHandler() {
                 : `ReturnValue: ${dialog.returnValue}.`;
     });
 
+    //collecting data from form after confirm button was pressed
     confirmBtn.addEventListener("click", (event) => {
         event.preventDefault(); //Prevent the default form submission that refreshes the page
 
@@ -60,11 +64,20 @@ function addBookButtonHandler() {
         const pages = formData.get("pages");
         const status = formData.get("status");
 
+        //add the collected data to the library array
         addBookToLibrary(title, author, year, pages, status);
+
+        //update the library being display on site
         displayBooks();
+
+        //remove all the data inputted in form after the confirm button was pressed
         form.reset();
+
+        //for testing purpose
         dialog.close("Book Added");
     });
+
+    //prevent the default submission when cancel button was pressed so that data will not lose
     cancelBtn.addEventListener("click", (event) => {
         event.preventDefault();
         dialog.close("Cancelled");
