@@ -9,10 +9,11 @@ function Book(title, author, year, pages, status) {
     this.pages = pages || "0-8";
     this.status = status || "not-read";
     this.uuid = crypto.randomUUID();
+}
 
-    function statusToggle(status) {
-        this.status = status;
-    }
+Book.prototype.statusToogle = function(value) {
+    this.status = value;
+    console.table(myLibrary);
 }
 
 function addBookToLibrary(title, author, year, pages, status) {
@@ -83,6 +84,26 @@ function removeBook() {
 //bookStatusUpdate();
 removeBook();
 
+function statusButtonHandler() {
+    const bookList = document.getElementById("book-list");
+    bookList.addEventListener("change", (e) => {
+        const selectedValue = e.target.value;
+        const parent = e.target.closest(".book-item");
+        bookStatusUpdate(selectedValue, parent.dataset.uuid);     
+    })
+}
+statusButtonHandler();
+
+function bookStatusUpdate(value, uuid) {
+    if(book = myLibrary.find(item => item.uuid === uuid))
+    {
+        book.statusToogle(value);
+    }
+    else{
+        console.log("Book not found!");
+    }
+}
+
 
 function displayBooks() {
     const bookList = document.getElementById("book-list");
@@ -91,7 +112,7 @@ function displayBooks() {
     myLibrary.forEach(book => {
         const bookItem = document.createElement("div");
         bookItem.className = "book-item";
-        //bookItem.textContent = `${book.title} by ${book.author} (${book.year}) - UUID: ${book.uuid}`;
+        bookItem.dataset.uuid = book.uuid;
         bookList.appendChild(bookItem);
 
         //content of book item
@@ -116,6 +137,25 @@ function displayBooks() {
         removeBtn.classList.add("remove-button");
         removeBtn.textContent = "=";
         btnsCover.appendChild(removeBtn);
+
+        //select custom
+        const statusUpdate = document.createElement("select");
+        statusUpdate.id = "status-select";
+        statusUpdate.name = "status";
+        statusUpdate.classList = "status";
+
+        const options = document.createElement("optGroup");
+        options.label = "STATUS";
+
+        const opt1 = new Option("Not Read", "not-read");
+        const opt2 = new Option("Reading", "reading");
+        const opt3 = new Option("Read", "read");
+
+        options.append(opt1, opt2, opt3);
+        statusUpdate.appendChild(options);
+        btnsCover.appendChild(statusUpdate);
+        statusUpdate.value = book.status;
+
     });
 }
 displayBooks();

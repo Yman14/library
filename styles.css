@@ -49,6 +49,8 @@ body {
     width: 80%;
     height: 50px;
     border: 2px solid red;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .pages-cover {
