@@ -20,6 +20,7 @@ addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 1925, 180,"read");
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 1960);
 addBookToLibrary("Nineteen Eighty-Four", "George Orwell", 1949, 328, "reading");
 addBookToLibrary("hello world", "lee", 2026, 1, "reading");
+addBookToLibrary("book", "author", 2020, 100, "not-read");
 console.table(myLibrary);
 
 
@@ -27,6 +28,7 @@ function addBookButtonHandler() {
     const addBookBtn = document.getElementById("add-book-btn");
     const dialog = document.getElementById("add-book-dialog");
     const confirmBtn = document.getElementById("confirm-btn");
+    const cancelBtn = document.getElementById("cancel-btn");
     const outputBox = document.querySelector("output");
     outputBox.value = "outputBox.";
     addBookBtn.addEventListener("click", () => {
@@ -54,7 +56,11 @@ function addBookButtonHandler() {
         addBookToLibrary(title, author, year, pages, status);
         displayBooks();
         dialog.close("Book Added");
-        });
+    });
+    cancelBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        dialog.close("Cancelled");
+    });
 
 
 }
