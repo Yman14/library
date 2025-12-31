@@ -9,6 +9,10 @@ function Book(title, author, year, pages, status) {
     this.pages = pages || "0-8";
     this.status = status || "not-read";
     this.uuid = crypto.randomUUID();
+
+    function statusToggle(status) {
+        this.status = status;
+    }
 }
 
 function addBookToLibrary(title, author, year, pages, status) {
@@ -67,6 +71,18 @@ function addBookButtonHandler() {
 }
 addBookButtonHandler();
 
+function removeBook() {
+    const bookList = document.getElementById("book-list");
+    bookList.addEventListener("click", (e) => {
+        if(e.target.classList.contains("remove-button")){
+            console.log("clicked " + e.target.parentElement.parentElement.className);
+            e.target.parentElement.parentElement.remove();
+        }
+    })
+}
+//bookStatusUpdate();
+removeBook();
+
 
 function displayBooks() {
     const bookList = document.getElementById("book-list");
@@ -77,6 +93,8 @@ function displayBooks() {
         bookItem.className = "book-item";
         //bookItem.textContent = `${book.title} by ${book.author} (${book.year}) - UUID: ${book.uuid}`;
         bookList.appendChild(bookItem);
+
+        //content of book item
         const titleCover = document.createElement("h2");
         const yearCover = document.createElement("h5");
         const authorCover = document.createElement("h4");
@@ -92,6 +110,12 @@ function displayBooks() {
         authorCover.textContent = book.author;
         pagesCover.textContent = book.pages;
         bookItem.append(titleCover, yearCover, authorCover, btnsCover, pagesCover);
+
+        //buttons of book item
+        const removeBtn = document.createElement("button");
+        removeBtn.classList.add("remove-button");
+        removeBtn.textContent = "=";
+        btnsCover.appendChild(removeBtn);
     });
 }
 displayBooks();
