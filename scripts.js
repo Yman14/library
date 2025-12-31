@@ -55,6 +55,7 @@ function addBookButtonHandler() {
 
         addBookToLibrary(title, author, year, pages, status);
         displayBooks();
+        form.reset();
         dialog.close("Book Added");
     });
     cancelBtn.addEventListener("click", (event) => {
