@@ -21,6 +21,7 @@ Book.prototype.statusToogle = function(value) {
 function addBookToLibrary(title, author, year, pages, status) {
     const newBook = new Book(title, author, year, pages, status);
     myLibrary.push(newBook);
+    console.table(myLibrary);
 }
 // Sample books
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 1925, 180,"read");
@@ -28,6 +29,7 @@ addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 1960);
 addBookToLibrary("Nineteen Eighty-Four", "George Orwell", 1949, 328, "reading");
 addBookToLibrary("hello world", "lee", 2026, 1, "reading");
 addBookToLibrary("book", "author", 2020, 100, "not-read");
+addBookToLibrary("sample", "host", 1972, 143, "reading");
 console.table(myLibrary);
 
 //all functionality related to the button addButton in the site
@@ -158,7 +160,6 @@ function displayBooks() {
 
         //select custom
         const statusUpdate = document.createElement("select");
-        statusUpdate.id = "status-select";
         statusUpdate.name = "status";
         statusUpdate.classList = "status";
 
