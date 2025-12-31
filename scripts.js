@@ -6,7 +6,7 @@ function Book(title, author, year, pages, status) {
     this.title = title;
     this.author = author;
     this.year = year;
-    this.pages = pages || "Unknown";
+    this.pages = pages || "0-8";
     this.status = status || "not-read";
     this.uuid = crypto.randomUUID();
 }
@@ -75,8 +75,23 @@ function displayBooks() {
     myLibrary.forEach(book => {
         const bookItem = document.createElement("div");
         bookItem.className = "book-item";
-        bookItem.textContent = `${book.title} by ${book.author} (${book.year}) - UUID: ${book.uuid}`;
+        //bookItem.textContent = `${book.title} by ${book.author} (${book.year}) - UUID: ${book.uuid}`;
         bookList.appendChild(bookItem);
+        const titleCover = document.createElement("h3");
+        const yearCover = document.createElement("h5");
+        const authorCover = document.createElement("h4");
+        const btnsCover = document.createElement("div");
+        const pagesCover = document.createElement("p");
+        titleCover.classList.add("title-cover");
+        yearCover.classList.add("year-cover");
+        authorCover.classList.add("author-cover");
+        btnsCover.classList.add("btns-cover");
+        pagesCover.classList.add("pages-cover");        
+        titleCover.textContent = book.title;
+        yearCover.textContent = book.year;
+        authorCover.textContent = book.author;
+        pagesCover.textContent = book.pages;
+        bookItem.append(titleCover, yearCover, authorCover, btnsCover, pagesCover);
     });
 }
 displayBooks();
