@@ -1,4 +1,4 @@
-document.querySelector("h1").textContent = "Welcome to the Library";
+document.querySelector("h1").textContent = "Welcome to the Library"; //verification of linking
 
 const myLibrary = [];
 
@@ -11,11 +11,13 @@ function Book(title, author, year, pages, status) {
     this.uuid = crypto.randomUUID();
 }
 
+//updating status of the book and updating console for testing
 Book.prototype.statusToogle = function(value) {
     this.status = value;
     console.table(myLibrary);
 }
 
+//adding book to the library array
 function addBookToLibrary(title, author, year, pages, status) {
     const newBook = new Book(title, author, year, pages, status);
     myLibrary.push(newBook);
@@ -28,7 +30,7 @@ addBookToLibrary("hello world", "lee", 2026, 1, "reading");
 addBookToLibrary("book", "author", 2020, 100, "not-read");
 console.table(myLibrary);
 
-
+//all functionality related to the button addButton in the site
 function addBookButtonHandler() {
     const addBookBtn = document.getElementById("add-book-btn");
     const dialog = document.getElementById("add-book-dialog");
@@ -72,6 +74,7 @@ function addBookButtonHandler() {
 }
 addBookButtonHandler();
 
+//removing the book in the library
 function removeBook() {
     const bookList = document.getElementById("book-list");
     bookList.addEventListener("click", (e) => {
@@ -84,6 +87,7 @@ function removeBook() {
 //bookStatusUpdate();
 removeBook();
 
+//when the user click the button to change status
 function statusButtonHandler() {
     const bookList = document.getElementById("book-list");
     bookList.addEventListener("change", (e) => {
@@ -94,6 +98,7 @@ function statusButtonHandler() {
 }
 statusButtonHandler();
 
+//update the book status not-read/reading/read in myLibrary 
 function bookStatusUpdate(value, uuid) {
     if(book = myLibrary.find(item => item.uuid === uuid))
     {
@@ -104,7 +109,7 @@ function bookStatusUpdate(value, uuid) {
     }
 }
 
-
+//rendering the myLibrary array in the site
 function displayBooks() {
     const bookList = document.getElementById("book-list");
     bookList.innerHTML = "";
