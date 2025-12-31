@@ -39,6 +39,16 @@ body {
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
+
+    &.status-not-read {
+        background-image: linear-gradient(90deg, red, red 5%, whitesmoke 5%, whitesmoke);
+    }
+    &.status-reading {
+        background-image: linear-gradient(90deg, blue, blue 5%, whitesmoke 5%, whitesmoke);
+    }
+    &.status-read {
+        background-image: linear-gradient(90deg, green, green 5%, whitesmoke 5%, whitesmoke);
+    }
 }
 
 .year-cover {
@@ -48,9 +58,26 @@ body {
 .btns-cover {
     width: 80%;
     height: 50px;
-    border: 2px solid red;
     display: flex;
     justify-content: space-evenly;
+
+    &>* {
+        box-shadow: 0 5px 5px #bebebe;
+    }
+}
+
+.btns-cover .remove-button {
+    width: 35px;
+    height: 35px;
+    background-color: #f55b40;
+    border: none;
+    border-radius: 50%;
+}
+
+.btns-cover .status {
+    width: 100px;
+    height: 35px;
+    border: 1px solid #0a0a24;
 }
 
 .pages-cover {

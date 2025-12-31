@@ -133,6 +133,7 @@ function displayBooks() {
         const bookItem = document.createElement("div");
         bookItem.className = "book-item";
         bookItem.dataset.uuid = book.uuid;
+        bookItem.classList.add("status-" + book.status); //status color indicator
         bookList.appendChild(bookItem);
 
         //content of book item
