@@ -3,9 +3,9 @@ document.querySelector("h1").textContent = "Welcome to the Library"; //verificat
 const myLibrary = [];
 
 function Book(title, author, year, pages, status) {
-    this.title = title;
-    this.author = author;
-    this.year = year;
+    this.title = title || "No Title";
+    this.author = author || "No Author";
+    this.year = year || "XXXX";
     this.pages = pages || "0-8";
     this.status = status || "not-read";
     this.uuid = crypto.randomUUID();
@@ -15,6 +15,7 @@ function Book(title, author, year, pages, status) {
 Book.prototype.statusToogle = function(value) {
     this.status = value;
     console.table(myLibrary);
+    bookStatusColorUpdate(this.uuid);
 }
 
 //adding book to the library array
@@ -123,6 +124,13 @@ function bookStatusUpdate(value, uuid) {
         console.log("Book not found!");
     }
 }
+
+//book status color indicator update
+// function bookStatusColorUpdate(uuid) {
+//statusButtonHandler cakk gere
+//     query sekect dataset.uuid == uuid
+//     remove class and add new class based on status
+// }
 
 //rendering the myLibrary array in the site
 function displayBooks() {
