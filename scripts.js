@@ -15,7 +15,6 @@ function Book(title, author, year, pages, status) {
 Book.prototype.statusToogle = function(value) {
     this.status = value;
     console.table(myLibrary);
-    bookStatusColorUpdate(this.uuid);
 }
 
 //adding book to the library array
@@ -100,7 +99,6 @@ function removeBook() {
         }
     })
 }
-//bookStatusUpdate();
 removeBook();
 
 //when the user click the button to change status
@@ -119,6 +117,7 @@ function bookStatusUpdate(value, uuid) {
     if(book = myLibrary.find(item => item.uuid === uuid))
     {
         book.statusToogle(value);
+        bookStatusColorUpdate(book);
     }
     else{
         console.log("Book not found!");
@@ -126,11 +125,12 @@ function bookStatusUpdate(value, uuid) {
 }
 
 //book status color indicator update
-// function bookStatusColorUpdate(uuid) {
-//statusButtonHandler cakk gere
-//     query sekect dataset.uuid == uuid
-//     remove class and add new class based on status
-// }
+function bookStatusColorUpdate(book) {
+    const bookItem = document.querySelector(`[data-uuid="${book.uuid}"]`);
+    bookItem.classList.remove([...bookItem.classList][1]); //rm the previous color indicator
+    bookItem.classList.add("status-" + book.status); //add the color indicator based on the current book status
+
+}
 
 //rendering the myLibrary array in the site
 function displayBooks() {
