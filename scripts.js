@@ -94,8 +94,11 @@ function removeBook() {
     const bookList = document.getElementById("book-list");
     bookList.addEventListener("click", (e) => {
         if(e.target.classList.contains("remove-button")){
-            console.log("clicked " + e.target.parentElement.parentElement.className);
-            e.target.parentElement.parentElement.remove();
+            const bookItem = e.target.closest(".book-item"); //DOM book item
+            const bookIndex = myLibrary.findIndex(item => item.uuid == bookItem.dataset.uuid); //database book item
+            //remove from library and display list
+            myLibrary.splice(bookIndex, 1);
+            bookItem.remove();
         }
     })
 }
